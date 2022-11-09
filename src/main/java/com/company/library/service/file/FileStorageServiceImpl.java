@@ -7,8 +7,13 @@ import com.company.library.domains.Uploads;
 import com.company.library.dto.UploadsDTO;
 import com.company.library.exceptions.NotFoundException;
 import lombok.NonNull;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.ImageType;
+import org.apache.pdfbox.rendering.PDFRenderer;
+import org.apache.pdfbox.tools.imageio.ImageIOUtil;
 
 import javax.servlet.http.Part;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -111,7 +116,45 @@ public class FileStorageServiceImpl extends AbstractDAO<UploadDAO> implements Fi
     }
 
     @Override
-    public Uploads extractCover(Part book) {
-        return null;
+    public Uploads extractCover(Part part) {
+        try {
+            String contentType = "image/png";
+
+            String[] split = part.getSubmittedFileName().split("\\.");
+
+            String originalFileName = split[0] + "\\.png";
+
+            originalFileName = originalFileName.replaceAll(",", "_");
+
+            long size = part.getSize();
+
+            String generatedName = System.currentTimeMillis() + "\\.png";
+
+            String path = "/upload/" + generatedName;
+
+            Uploads uploads = Uploads.builder()
+                    .contentType(contentType)
+                    .originalName(originalFileName)
+                    .generatedName(generatedName)
+                    .size(size)
+                    .path(path)
+                    .build();
+
+            String uploadPath = rootPath.resolve(generatedName).toString();
+
+            dao.save(uploads);
+
+            PDDocument document = PDDocument.load(part.getInputStream());
+            PDFRenderer pdfRenderer = new PDFRenderer(document);
+            BufferedImage bufferedImage = pdfRenderer.renderImageWithDPI(0, 300, ImageType.RGB);
+
+            ImageIOUtil.writeImage(bufferedImage, uploadPath, 300);
+
+            return uploads;
+
+
+        } catch (IOException e) {
+            throw new RuntimeException("Something wrong try again");
+        }
     }
 }
