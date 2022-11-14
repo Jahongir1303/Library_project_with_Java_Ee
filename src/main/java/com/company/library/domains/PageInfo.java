@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserInfo {
+public class PageInfo {
     private Integer number;
     private Integer totalPages;
     private Boolean hasPrevious;

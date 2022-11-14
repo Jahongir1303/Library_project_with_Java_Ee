@@ -157,4 +157,19 @@ public class FileStorageServiceImpl extends AbstractDAO<UploadDAO> implements Fi
             throw new RuntimeException("Something wrong try again");
         }
     }
+
+    @Override
+    public Boolean hasNext(String search, Integer offset, Integer limit) {
+        return null;
+    }
+
+    @Override
+    public Boolean hasPrevious(Integer offset) {
+        return null;
+    }
+
+    @Override
+    public Integer totalPage(String search, Integer limit) {
+        return null;
+    }
 }

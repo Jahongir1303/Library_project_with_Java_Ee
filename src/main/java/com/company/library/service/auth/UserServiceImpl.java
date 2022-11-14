@@ -103,4 +103,19 @@ public class UserServiceImpl extends AbstractDAO<UserDAO> implements UserService
                 .email(user.getEmail())
                 .build();
     }
+
+    @Override
+    public Boolean hasNext(String search, Integer offset, Integer limit) {
+        return null;
+    }
+
+    @Override
+    public Boolean hasPrevious(Integer offset) {
+        return null;
+    }
+
+    @Override
+    public Integer totalPage(String search, Integer limit) {
+        return null;
+    }
 }

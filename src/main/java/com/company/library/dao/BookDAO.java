@@ -27,7 +27,7 @@ public class BookDAO extends GenericDAO<Book, Long> {
 //                .setFirstResult(skip)
 //                .setMaxResults(limit)
 //                .getResultList();
-        List<Book> resultList = session.createNativeQuery("select t.* from book t  where t.status='ACTIVE' and (t.name ilike '%'||:searchQuery||'%' or t.author ilike '%'||:searchQuery||'%') order by t.id desc offset :skip limit :limit", Book.class)
+        List<Book> resultList = session.createNativeQuery("select t.* from book t  where t.bookStatus='ACTIVE' and (t.name ilike '%'||:searchQuery||'%' or t.author ilike '%'||:searchQuery||'%') order by t.id desc offset :skip limit :limit", Book.class)
                 .setParameter("searchQuery", searchQuery)
                 .setParameter("skip", skip)
                 .setParameter("limit", limit)
@@ -43,7 +43,7 @@ public class BookDAO extends GenericDAO<Book, Long> {
         session.beginTransaction();
         Integer skip = (page - 1) * limit;
 
-        List<Book> resultList = session.createQuery("select t from Book t  where t.status=com.company.library.enums.BookStatus.ACTIVE and t.genre=:genre order by t.id desc", Book.class)
+        List<Book> resultList = session.createQuery("select t from Book t  where t.bookStatus=com.company.library.enums.BookStatus.ACTIVE and t.genre=:genre order by t.id desc", Book.class)
                 .setParameter("genre", searchQuery)
                 .setFirstResult(skip)
                 .setMaxResults(limit)
@@ -57,7 +57,7 @@ public class BookDAO extends GenericDAO<Book, Long> {
     public Integer findNumberOfElementBySearch(String search) {
         Session session = getSession();
         session.beginTransaction();
-        List<Book> resultList = session.createNativeQuery("select t.* from book t where t.status='ACTIVE' and (t.name ilike '%'||:searchQuery||'%' or t.author ilike '%'||:searchQuery||'%')", Book.class)
+        List<Book> resultList = session.createNativeQuery("select t.* from book t where t.bookStatus='ACTIVE' and (t.name ilike '%'||:searchQuery||'%' or t.author ilike '%'||:searchQuery||'%')", Book.class)
                 .setParameter("searchQuery", search)
                 .getResultList();
         session.getTransaction().commit();
@@ -68,7 +68,7 @@ public class BookDAO extends GenericDAO<Book, Long> {
     public List<Book> findAllByStatus(BookStatus pending) {
         Session session = getSession();
         session.beginTransaction();
-        List<Book> resultList = session.createQuery("select t from Book t where t.status=com.company.library.enums.BookStatus.PENDING", Book.class).getResultList();
+        List<Book> resultList = session.createQuery("select t from Book t where t.bookStatus=com.company.library.enums.BookStatus.PENDING", Book.class).getResultList();
         session.getTransaction().commit();
         session.close();
         return resultList;
@@ -77,7 +77,7 @@ public class BookDAO extends GenericDAO<Book, Long> {
     public Integer findNumberOfElementByGenre(Book.Genre genre) {
         Session session = getSession();
         session.beginTransaction();
-        List<Book> resultList = session.createQuery("select t from Book t where t.status=com.company.library.enums.BookStatus.ACTIVE and t.genre=:genre", Book.class)
+        List<Book> resultList = session.createQuery("select t from Book t where t.bookStatus=com.company.library.enums.BookStatus.ACTIVE and t.genre=:genre", Book.class)
                 .setParameter("genre", genre)
                 .getResultList();
         session.getTransaction().commit();
