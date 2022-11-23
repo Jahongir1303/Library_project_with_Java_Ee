@@ -6,11 +6,6 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-/**
- * @author "Otajonov Dilshodbek
- * @since 7/16/22 2:43 PM (Saturday)
- * libraryEE/IntelliJ IDEA
- */
 public class BookApprovalFilter implements Filter {
 
     @Override

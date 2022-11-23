@@ -40,6 +40,5 @@ public class HomeServlet extends HttpServlet {
         req.setAttribute("languages", Language.values());
         RequestDispatcher dispatcher = req.getRequestDispatcher("views/main.jsp");
         dispatcher.forward(req, resp);
-
     }
 }

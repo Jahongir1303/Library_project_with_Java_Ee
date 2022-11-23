@@ -3,15 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-  <welcome-file-list>
-    <welcome-file>views/main.jsp</welcome-file>
-  </welcome-file-list>
+<!--  <welcome-file-list>-->
+<!--    <welcome-file>views/main.jsp</welcome-file>-->
+<!--  </welcome-file-list>-->
 
   <error-page>
     <exception-type>com.company.library.exceptions.NotFoundException</exception-type>
     <location>/404</location>
   </error-page>
-
   <error-page>
     <exception-type>com.company.library.exceptions.AuthenticationException</exception-type>
     <location>/401</location>

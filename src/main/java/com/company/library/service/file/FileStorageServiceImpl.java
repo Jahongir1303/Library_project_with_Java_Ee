@@ -26,7 +26,7 @@ import java.util.Optional;
 public class FileStorageServiceImpl extends AbstractDAO<UploadDAO> implements FileStorageService {
     private static FileStorageServiceImpl fileStorageService;
 
-    private Path rootPath = Paths.get("/home/jahongir/Documents/upload");
+    private Path rootPath = Paths.get("/home/jahongir/IdeaProjects/Library_project_with_Java_Ee/upload/");
 
     public FileStorageServiceImpl() {
         super(ApplicationContextHolder.getBean(UploadDAO.class));
@@ -66,10 +66,9 @@ public class FileStorageServiceImpl extends AbstractDAO<UploadDAO> implements Fi
                     .path(path)
                     .build();
 
-            Path uploadPath = rootPath.resolve(generatedName);
-
             dao.save(uploads);
 
+            Path uploadPath = rootPath.resolve(generatedName);
             Files.copy(part.getInputStream(), uploadPath, StandardCopyOption.REPLACE_EXISTING);
             return uploads;
 
@@ -122,13 +121,13 @@ public class FileStorageServiceImpl extends AbstractDAO<UploadDAO> implements Fi
 
             String[] split = part.getSubmittedFileName().split("\\.");
 
-            String originalFileName = split[0] + "\\.png";
+            String originalFileName = split[0] + ".png";
 
             originalFileName = originalFileName.replaceAll(",", "_");
 
             long size = part.getSize();
 
-            String generatedName = System.currentTimeMillis() + "\\.png";
+            String generatedName = System.currentTimeMillis() + ".png";
 
             String path = "/upload/" + generatedName;
 
@@ -140,10 +139,9 @@ public class FileStorageServiceImpl extends AbstractDAO<UploadDAO> implements Fi
                     .path(path)
                     .build();
 
-            String uploadPath = rootPath.resolve(generatedName).toString();
-
             dao.save(uploads);
 
+            String uploadPath = rootPath.resolve(generatedName).toString();
             PDDocument document = PDDocument.load(part.getInputStream());
             PDFRenderer pdfRenderer = new PDFRenderer(document);
             BufferedImage bufferedImage = pdfRenderer.renderImageWithDPI(0, 300, ImageType.RGB);
@@ -154,7 +152,7 @@ public class FileStorageServiceImpl extends AbstractDAO<UploadDAO> implements Fi
 
 
         } catch (IOException e) {
-            throw new RuntimeException("Something wrong try again");
+            throw new RuntimeException(e.getMessage());
         }
     }
 

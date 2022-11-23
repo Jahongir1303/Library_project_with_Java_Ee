@@ -27,7 +27,6 @@ public class BookGenreServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String[] pathVariables = req.getPathInfo().split("/");
         String genreKey = pathVariables[pathVariables.length - 1];
         Book.Genre searchGenre = Arrays.stream(Book.Genre.values())

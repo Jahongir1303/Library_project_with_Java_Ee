@@ -51,5 +51,6 @@ public class GlobalFilter implements Filter {
 
     @Override
     public void destroy() {
+
     }
 }

@@ -1,4 +1,4 @@
-package com.company.library.servlets.handlers;
+package com.company.library.handlers;
 
 
 import com.company.library.dto.ErrorDto;

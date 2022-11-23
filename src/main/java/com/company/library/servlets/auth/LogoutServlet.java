@@ -8,11 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * @author "Otajonov Dilshodbek
- * @since 7/18/22 8:43 AM (Monday)
- * libraryEE/IntelliJ IDEA
- */
+
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
     @Override

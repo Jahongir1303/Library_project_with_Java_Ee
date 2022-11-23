@@ -15,7 +15,6 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,8 +40,7 @@
                    placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <button class="btn btn-outline-danger ml-2 my-2 my-sm-0" type="button" onclick="location='/logout'">Logout
-        </button>
+        <button class="btn btn-outline-danger ml-2 my-2 my-sm-0" type="button" onclick="location='/logout'">Logout</button>
     </div>
 </nav>
 
@@ -154,11 +152,8 @@
 <div class="row m-2">
     <c:forEach items="${books}" var="book">
         <div class="col-2">
-            <div class="card p-2" style="   width: 100%;">
-                <img class="card-img-top" id="example"
-                     src="/download?img=${book.cover.path}" width="140"
-                     height="250"
-                     alt="Card image cap">
+            <img class="card p-2" style="   width: 100%;">
+                <img class="card-img-top" id="example" src="/download?img=${book.cover.path}" width="140" height="250" alt="Card image cap">
                 <div class="card-body p-1">
                     <h5 class="card-title"> ${book.name}</h5>
                     <i style="display:block;"><b>author</b> : ${book.author} </i>
