@@ -8,11 +8,7 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.Objects;
 
-/**
- * @author "Otajonov Dilshodbek
- * @since 7/14/22 9:57 PM (Thursday)
- * libraryEE/IntelliJ IDEA
- */
+
 
 public class BookUploadFilter implements Filter {
     @Override
