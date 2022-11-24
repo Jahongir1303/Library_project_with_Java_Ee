@@ -63,7 +63,8 @@ public class FileStorageServlet extends HttpServlet {
         });
         resp.setContentType(uploadsDTO.getContentType());
         resp.setHeader("Content-disposition", "attachment; filename=" + uploadsDTO.getOriginalName());
-        Path path = Paths.get("/home/jahongir/IdeaProjects/Library_project_with_Java_Ee/", uploadsDTO.getPath());
+        Path path = Paths.get("/home/jahongir/IdeaProjects/Library_project_with_Java_Ee", uploadsDTO.getPath());
+        System.out.println(path);
         ServletOutputStream outputStream = resp.getOutputStream();
         Files.copy(path, outputStream);
     }

@@ -138,7 +138,7 @@
 
                             <div class="form-group mb-3">
                                 <label>Book</label>
-                                <input type="file" name="file" class="form-control" placeholder="Book"/>
+                                <input type="file" name="file" class="form-control" accept="application/pdf" placeholder="Book"/>
                             </div>
 
                             <button type="submit" class="btn btn-primary">save</button>

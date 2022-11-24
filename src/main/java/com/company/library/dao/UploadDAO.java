@@ -23,11 +23,12 @@ public class UploadDAO extends GenericDAO<Uploads, Long> {
         Session session = getSession();
         session.beginTransaction();
 
-        Query<Uploads> uploadsQuery = session.createQuery("select t from Uploads t where t.path =: path", Uploads.class);
+        Query<Uploads> uploadsQuery = session.createQuery("select t from Uploads t where t.path = :path", Uploads.class);
         uploadsQuery.setParameter("path", path);
         Uploads singleResultOrNull = uploadsQuery.getSingleResultOrNull();
-        session.close();
+
         session.getTransaction().commit();
+        session.close();
         return Optional.ofNullable(singleResultOrNull);
     }
 }
